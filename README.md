@@ -1,59 +1,66 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Componentes Reutilizáveis do Blade
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Descrição
 
-## About Laravel
+Este trabalho apresenta a utilização de componentes reutilizáveis do Blade no projeto NotesB, desenvolvido com Laravel. O objetivo é melhorar a organização do código, reduzir a repetição de estruturas HTML e CSS e manter a padronização visual da aplicação.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+O projeto já utiliza recursos de templates Blade, como `@extends`, `@section`, `@yield` e `@include`, além do Bootstrap para a estilização das páginas.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+A proposta é ampliar essa reutilização por meio de uma biblioteca interna de componentes Blade, utilizando propriedades (*props*) e slots para personalizar o conteúdo e a aparência dos elementos.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Funcionalidades
 
-## Learning Laravel
+- **Componente de alerta (`<x-alert>`):** permite exibir mensagens de sucesso, erro, aviso e informação, utilizando diferentes estilos visuais do Bootstrap.
+- **Componente de botão (`<x-button>`):** proposta de componente para padronizar botões de ação, permitindo configurar o texto, o ícone, a aparência e o destino ou tipo de ação.
+- **Componente de confirmação (`<x-modal>`):** proposta de estrutura reutilizável para apresentar mensagens de confirmação, com título, conteúdo e área para botões de ação.
+- **Passagem de dados:** utilização de `@props` para definir propriedades e de `$slot` para receber o conteúdo dos componentes.
+- **Organização de templates:** utilização dos recursos do Blade para compartilhar layouts e partes da interface entre diferentes páginas.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## Requisitos para execução
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- PHP compatível com a versão do Laravel utilizada no projeto.
+- Composer instalado.
+- Laravel e suas dependências instalados.
+- Banco de dados configurado conforme as instruções do projeto.
+- Bootstrap disponível para a estilização dos componentes.
+- Font Awesome disponível caso sejam utilizados os ícones nos botões.
+- Arquivos dos componentes Blade criados em `resources/views/components/`, quando aplicável.
 
-## Laravel Sponsors
+## Como executar o projeto
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1. Clone o repositório do GitHub.
+2. Acesse a pasta do projeto.
+3. Instale as dependências do PHP:
 
-### Premium Partners
+   ```bash
+   composer install
+   ```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+4. Configure o arquivo `.env` de acordo com o ambiente local e com o banco de dados utilizado pelo projeto.
+5. Gere a chave da aplicação, se necessário:
 
-## Contributing
+   ```bash
+   php artisan key:generate
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+6. Execute as migrações, caso o banco de dados ainda não esteja preparado:
 
-## Code of Conduct
+   ```bash
+   php artisan migrate
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+7. Inicie o servidor de desenvolvimento:
 
-## Security Vulnerabilities
+   ```bash
+   php artisan serve
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+8. Acesse o endereço informado pelo Laravel no terminal.
 
-## License
+## Benefícios
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+A utilização de componentes Blade contribui para a redução da duplicação de código, a padronização visual, a facilidade de manutenção e a organização das interfaces. As propriedades e os slots permitem adaptar os componentes a diferentes páginas sem precisar repetir toda a estrutura HTML.
+
+## Observação
+
+Os componentes descritos devem ser considerados implementados somente quando seus arquivos estiverem presentes no projeto e suas utilizações estiverem integradas às páginas correspondentes. O componente de botão e o comportamento interativo do modal dependem da implementação e da integração efetivamente realizadas.

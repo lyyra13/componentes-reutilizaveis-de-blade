@@ -44,8 +44,20 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col text-end">
-                        <a href="{{route('home')}}" class="btn btn-primary px-5"><i class="fa-solid fa-ban me-2"></i>Cancel</a>
-                        <button type="submit" class="btn btn-secondary px-5"><i class="fa-regular fa-circle-check me-2"></i>Save</button>
+                        <x-button
+                            :href="route('home')"
+                            icon="fa-solid fa-ban"
+                            variant="primary">
+                            Cancelar
+                        </x-button>
+
+                        <x-button
+                            type="submit"
+                            icon="fa-regular fa-circle-check"
+                            variant="secondary"
+                            class="px-5">
+                            Salvar
+                        </x-button>
                     </div>
                 </div>
             </form>

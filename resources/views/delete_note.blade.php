@@ -5,17 +5,34 @@
         <div class="col">
             @include('top_bar')
             <!-- confirm delete -->
-            <div class="col card p-5 text-center">
-                <span class="display-3 mb-5"><i class="fa-solid fa-triangleexclamation text-warning opacity-50"></i></span>
-                <h4 class="text-info mb-3">{{ $note->title }}</h4>
-                <p class="text-secondary">Confirma a exclusão desta nota?</p>
-                <div class="mt-3">
-                    <a href="{{ route('home') }}" class="btn btn-primary px-5 m-2"><i
-                            class="fa-solid fa-xmark me-2"></i>Não</a>
-                    <a href="{{ route('deleteNoteConfirm', \App\Services\Operations::encryptId($note->id))
-}}" class="btn btn-danger px-5 m-2"><i class="fa-solid fa-trash me-2"></i>Sim</a>
-                </div>
-            </div>
+            <x-modal title="Confirmar exclusão">
+                <p>
+                    Tem certeza de que deseja excluir a nota
+                    <strong>{{ $note->title }}</strong>?
+                </p>
+
+                <x-slot:footer>
+                    <div class="mt-3">
+                        <x-button
+                            :href="route('home')"
+                            icon="fa-solid fa-xmark"
+                            variant="primary">
+                            Não
+                        </x-button>
+
+                        <x-button
+                            :href="route(
+                                'deleteNoteConfirm',
+                                \App\Services\Operations::encryptId($note->id)
+                            )"
+                            icon="fa-solid fa-trash"
+                            variant="danger">
+                            Sim, excluir
+                        </x-button>
+                    </div>
+                </x-slot:footer>
+            </x-modal>
+
         </div>
     </div>
 </div>
